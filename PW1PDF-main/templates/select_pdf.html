@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Seleccione una Carrera</h2>
+
+<form method="POST" action="{% url 'filtrar_materias' %}">
+    {% csrf_token %}
+    <label for="carrera">Seleccione una carrera:</label>
+    <select name="carrera" id="carrera" required>
+        <option value="KTII" {%if carrera_seleccionada == "KTII"%}selected{%endif%}>Ingenieria en Informática
+        </option>
+        <option value="KTIE" {%if carrera_seleccionada == "KTIE"%}selected{%endif%}>Ingenieria en Electricidad
+        </option>
+        <option value="KTIL" {%if carrera_seleccionada == "KTIL"%}selected{%endif%}>Ingenieria en Electrónica
+        </option>
+        <option value="KTIC" {%if carrera_seleccionada == "KTIC"%}selected{%endif%}>Ingenieria en Civil
+        </option>
+    </select>
+    <button type="submit"> Filtrar </button>
+</form>
+
+{% if carrera_seleccionada %}
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Materia</th>
+                <th>Imprimir PDF</th>
+            </tr>
+            <tbody>
+                {% for materia in materias %}
+                <tr>
+                    <td>{{ materia.codigo }}</td>
+                    <td>{{ materia.materia }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'mostrar_pdf' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="materia_codigo" value="{{ materia.codigo }}">
+                            <button type="submit">Imprimir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            {% endif %}
+            
+           {% if pdf_url %}
+            <div>
+                <embed type="application/pdf" src="{{ pdf_url }}" width="100%" height="600px">
+            </div>
+            {% endif %} 
+            
+</body>
+</html>

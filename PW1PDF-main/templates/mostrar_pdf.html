@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Materia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Centrar contenido en la página */
+        }
+        .container {
+            width: 21cm; /* Ancho de la hoja A4 */
+            height: 29.7cm; /* Alto de la hoja A4 */
+            margin: auto; /* Centrar la hoja horizontalmente */
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: transparent;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            text-align: justify; 
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            position: fixed;
+            bottom: 02px;
+            right: 02px;
+            padding: 02px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if pdf_seleccionado %}
+        <table>
+            {% for pdfs in pdf %}
+            <tr>
+                <th colspan="2">I. Identificación</th>
+            </tr>
+            <tr>
+                <th>Nombre de la materia</th>
+                <td>{{ pdfs.materia }}</td>
+            </tr>
+            <tr>
+                <th>Código</th>
+                <td>{{ pdfs.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Condición</th>
+                <td>{{ pdfs.condicion }}</td>
+            </tr>
+            <tr>
+                <th>Carrera</th>
+                <td>{{ pdfs.carrera }}</td>
+            </tr>
+            <tr>
+                <th>Curso</th>
+                <td>{{ pdfs.curso }}</td>
+            </tr>
+            <tr>
+                <th>Semestre</th>
+                <td>{{ pdfs.semestre }}</td>
+            </tr>
+            <tr>
+                <th>Requisitos</th>
+                <td>{{ pdfs.requisitos }}</td>
+            </tr>
+            <tr>
+                <th>Carga horaria semanal</th>
+                <td>{{ pdfs.carga_horaria_semanal }}</td>
+            </tr>
+            <tr>
+                <th>Carga horaria semestral</th>
+                <td>{{ pdfs.carga_horaria_semestral }}</td>
+            </tr>
+            <tr>
+                <th>Fundamentación</th>
+                <td>{{ pdfs.fundamentacion }}</td>
+            </tr>
+            <tr>
+                <th>Objetivos</th>
+                <td>{{ pdfs.objetivos }}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ pdfs.contenido }}</td>
+            </tr>
+            <tr>
+                <th>Metodología</th>
+                <td>{{ pdfs.metodologia }}</td>
+            </tr>
+            <tr>
+                <th>Evaluación</th>
+                <td>{{ pdfs.evaluacion }}</td>
+            </tr>
+            <tr>
+                <th>Bibliografía</th>
+                <td>{{ pdfs.bibliografia }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+    <div class="footer">
+        Página 1
+    </div>
+</body>
+</html>
